@@ -23,7 +23,7 @@ osowatzke@arizona.edu}}
 \maketitle
 
 \begin{abstract}
-Importance Sampling (IS) is an alternative to Monte Carlo (MC) simulation that can used to estimate probabilities of hard-to-sample distributions. It more frequently samples the "important" samples of a distribution to reduce the variance of probability estimates. This document compares probabilities generated with Monte Carlo Simulation and Importance Sampling. It specifically examines a case in which Monte Carlo Sampling provides very few samples of interest.
+Importance Sampling (IS) is an alternative to Monte Carlo (MC) simulation that can be used to estimate probabilities of hard-to-sample distributions. It more frequently samples the "important" samples of a distribution to reduce the variance of probability estimates. This document compares probabilities estimated with Monte Carlo Simulation and Importance Sampling. It specifically examines a case in which Monte Carlo Sampling provides very few "important" samples.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -31,6 +31,13 @@ Monte Carlo Simulation, Importance Sampling,  Variance, Probability Estimates
 \end{IEEEkeywords}
 
 \section{Introduction}
+Both Monte Carlo (MC) Simulations and Importance Sampling (IS) are techniques for estimating probabilities. In this document, both techniques will be used to estimate the probability that a random variable $X$ with distribution $X\sim N(1,1)$ exceeds 3.957 (i.e. $P\{X > 3.957\}$).  
+%both techniques will be used to estimate the following probability:
+%\begin{equation}
+%P\{X > 3.957\}
+%\end{equation}
+%will be used to compute the probability that a random variable $X$ exceeds a threshold $\lambda$.
+%Let $X$ be a normally distributed distributed random variable with $\mu=1$ and $\sigma^2=1$ (i.e. $X \sim N(1,1)$). Next, consider $\lambda=3.957$. Now, both simulations methods will attempt to estimate $P\{X > 3.957\}$.
 %Consider a pulsed radar system using threshold-based detection. The radar system transmits a signal and receives a return echo when a target is present. The receiver also receives Guassian-distributed thermal noise. If the received  signal sample is greater than the threshold, the radar detects a target. Conversely, if the received signal sample is smaller than the threshold, the radar does not detect a target. \par
 %Let $H_1$ be an event that the target is present, and let $H_0$ be an event that the target is not present. Furthermore, define the signal return as a random variable $X$. The conditional densities of $X$ ($f_{X|H_0}(x|H_0)$ and $f_{X|H_1}(x|H_1)$) are Gaussian and centered about $\eta_0$ and $\eta_1$ respectively.
 %\begin{equation}
