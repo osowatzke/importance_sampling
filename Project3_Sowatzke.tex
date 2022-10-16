@@ -31,7 +31,31 @@ Monte Carlo Simulation, Importance Sampling,  Variance, Probability Estimates
 \end{IEEEkeywords}
 
 \section{Introduction}
-Both Monte Carlo (MC) Simulations and Importance Sampling (IS) are techniques for estimating probabilities. In this document, both techniques will be used to estimate the probability that a random variable $X$ with distribution $X\sim N(1,1)$ exceeds 3.957 (i.e. $P\{X > 3.957\}$).  
+Both Monte Carlo (MC) Simulations and Importance Sampling (IS) are techniques for estimating probabilities. In this document, both techniques will be used to estimate the probability that a random variable $X$ with distribution $X\sim N(1,1)$ exceeds 3.957 (i.e. $P\{X > 3.957\}$).
+\section{Monte Carlo Simulation}
+The probability of interest can be written as follows:
+\begin{equation}
+P\{X > 3.957\} = \int_{-\infty}^{\infty}I(x)f_X(x)dx
+\end{equation}
+where
+\begin{equation}
+I(x) = \begin{cases}
+1 & x > 3.957 \\
+0 & x \leq 3.957
+\end{cases}
+\end{equation}
+Note that this probability can also be written as an expected value:
+\begin{equation}
+P\{X > 3.957\} = E[I(X)]
+\end{equation}
+Monte Carlo Simulation attempts to estimate this probability using a sample mean
+\begin{equation}
+P\{X > 3.957\} \approx \frac{1}{N}\sum_{i=1}^{N}I(x_i)
+\end{equation}
+where
+\begin{equation}
+x_1, x_2, ..., x_N \sim f_X(x)
+\end{equation}
 %both techniques will be used to estimate the following probability:
 %\begin{equation}
 %P\{X > 3.957\}
