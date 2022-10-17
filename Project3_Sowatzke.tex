@@ -70,6 +70,7 @@ The Monte Carlo probability estimate was generated for values $N$ from $100$ to 
 \caption{Monte Carlo Probability Estimate}
 \label{Monte Carlo Estimate}
 \end{figure}
+\noindent
 The absolute value of the error between the Monte Carlo estimate and the true probability ($|P_{est}\{X > 3.957\} - P_{truth}\{X > 3.957\}|$) is also plotted vs $N$.
 \begin{figure}[H]
 \centerline{\includegraphics[width=0.5\textwidth]{Monte_Carlo_Error.png}}
@@ -115,7 +116,30 @@ The important samples of this density function are highlighted in Fig. \ref{Impo
 \caption{Important Samples from $g_X(x)$}
 \label{Important Samples}
 \end{figure}
-Note that the number of important samples is significantly larger than that of Fig. \ref{Monte Carlo Limits}. This should reduce the variance of the probability estimate.
+\noindent
+Note that the number of important samples is significantly larger than that of Fig. \ref{Monte Carlo Limits}. This should reduce the variance of the probability estimate. 
+\par
+The Importance Sampling probability estimate was generated for values $N$ from $100$ to $10^5$ in increments of $100$. The MATLAB code to generate this estimate is included in Appendix \ref{matlab_code}. The Important Sampling probability estimate is plotted vs $N$ in Fig. \ref{Importance Sampling Estimate}.
+\begin{figure}[H]
+\centerline{\includegraphics[width=0.5\textwidth]{Importance_Sampling_Estimate.png}}
+\caption{Importance Sampling Probability Estimate}
+\label{Importance Sampling Estimate}
+\end{figure}
+\noindent
+The absolute value of the error between the Importance Sampling estimate and the true probability ($|P_{est}\{X > 3.957\} - P_{truth}\{X > 3.957\}|$) is also plotted vs $N$.
+\begin{figure}[H]
+\centerline{\includegraphics[width=0.5\textwidth]{Importance_Sampling_Error.png}}
+\caption{Importance Sampling Probability Error}
+\label{Importance Sampling Perr}
+\end{figure}
+The variance of the Monte Carlo and Importance Sampling probability estimates can be compared by overlaying the probability error plots. This plot is shown in Fig. \ref{Error Overlay}
+\begin{figure}[H]
+\centerline{\includegraphics[width=0.5\textwidth]{Error_Overlay.png}}
+\caption{Probability of Error Comparison}
+\label{Error Overlay}
+\end{figure}
+\noindent
+Note that the Importance Sampling probability estimate is much closer to the expected probability than the Monte Carlo Estimate. As such, the Importance Sampling estimate has a much lower variance for the same values of $N$.
 %both techniques will be used to estimate the following probability:
 %\begin{equation}
 %P\{X > 3.957\}
