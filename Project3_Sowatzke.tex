@@ -103,7 +103,19 @@ Once again, the expected value can be estimated using sample mean.
 \begin{equation}
 P\{X > 3.957\} \approx \frac{1}{N}\sum_{i=1}^{N}I(x_i)\frac{f_X(x_i)}{g_X(x_i)}
 \end{equation}
-Note the samples $x_1,x_2,...,x_N$ are sampled from $g_X(x)$ instead of $f_X(x)$. This enables us to select a distribution $g_X(x)$ with more "important" samples.
+Note the samples $x_1,x_2,...,x_N$ are sampled from $g_X(x)$ instead of $f_X(x)$. This enables us to select a density $g_X(x)$ with more "important" samples. 
+\par
+Consider a density $g_X(x)$ that is a shifted version of $f_X(x)$. Specifically, consider the following density function
+\begin{equation}
+g_X(x) = \frac{1}{\sqrt{2\pi}}e^{-(x-3.957)^2/2}
+\end{equation}
+The important samples of this density function are highlighted in Fig. \ref{Important Samples}. 
+\begin{figure}[H]
+\centerline{\includegraphics[width=0.5\textwidth]{Important_Samples.png}}
+\caption{Important Samples from $g_X(x)$}
+\label{Important Samples}
+\end{figure}
+Note that the number of important samples is significantly larger than that of Fig. \ref{Monte Carlo Limits}. This should reduce the variance of the probability estimate.
 %both techniques will be used to estimate the following probability:
 %\begin{equation}
 %P\{X > 3.957\}
