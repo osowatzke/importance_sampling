@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
+\usepackage{float}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
@@ -56,6 +57,17 @@ where
 \begin{equation}
 x_1, x_2, ..., x_N \sim f_X(x)
 \end{equation}
+\par
+Given different values of $N \in [1, 10^5]$, Monte Carlo Simulations can be used to estimate $P\{X > 3.957\}$. This estimate can than be compared to the true probability.
+\begin{equation}
+P\{X > 3.957\} = 0.001553
+\end{equation}
+The Monte Carlo probability estimate was generated for values $N$ from $100$ to $10^5$ in increments of $100$. The MATLAB code to generate this estimate is included in Appendix \ref{matlab_code}. The Monte Carlo probability estimate is plotted vs $N$ in Fig. \ref{Monte Carlo Estimate}
+\begin{figure}[H]
+\centerline{\includegraphics[width=0.5\textwidth]{Monte_Carlo_Estimate.png}}
+\caption{Monte Carlo Probability Estimate}
+\label{Monte Carlo Estimate}
+\end{figure}
 %both techniques will be used to estimate the following probability:
 %\begin{equation}
 %P\{X > 3.957\}
@@ -280,14 +292,14 @@ x_1, x_2, ..., x_N \sim f_X(x)
 
 % The threshold used in the given radar system samples a point on the ROC curve. Choices of the threshold that maximize the probability of detection also increase the probability of false alarm. The derived ROC curve provides a method for selecting the optimal threshold for the system. To determine an optimal threshold the system designer can select an optimal point on the curve and compute the corresponding threshold using equation \eqref{lambda_conv_step2}.
 
-%\onecolumn
-%\pagebreak
-%\appendices
-%\section{MATLAB Code to Plot Analytic ROC Curve}
-%\label{analytic_code}
-%\lstset{style=Matlab-editor}
-%\lstinputlisting{Analytic_ROC_Curve.m}
-%\raggedbottom
+\onecolumn
+\pagebreak
+\appendices
+\section{MATLAB Source Code}
+\label{matlab_code}
+\lstset{style=Matlab-editor}
+\lstinputlisting{Project3_Sowatzke.m}
+\raggedbottom
 %\pagebreak
 %\section{MATLAB Code to Plot Monte Carlo ROC Curve}
 %\label{monte_carlo_code}
