@@ -37,6 +37,7 @@ Both Monte Carlo (MC) Simulations and Importance Sampling (IS) are techniques fo
 The probability of interest can be written as follows:
 \begin{equation}
 P\{X > 3.957\} = \int_{-\infty}^{\infty}I(x)f_X(x)dx
+\label{Pint}
 \end{equation}
 where
 \begin{equation}
@@ -44,6 +45,7 @@ I(x) = \begin{cases}
 1 & x > 3.957 \\
 0 & x \leq 3.957
 \end{cases}
+\label{Ix_def}
 \end{equation}
 Note that this probability can also be written as an expected value:
 \begin{equation}
@@ -75,6 +77,32 @@ The absolute value of the error between the Monte Carlo estimate and the true pr
 \label{Monte Carlo Perr}
 \end{figure}
 As $N\rightarrow\infty$, the Monte Carlo Estimate should approach the true probability. This is confirmed by the reduction in variance as $N$ increases in Fig. \ref{Monte Carlo Perr}.
+\section{Importance Sampling}
+Examining the shaded area in Fig. 
+\ref{Monte Carlo Limits}, very few of the samples used in the Monte Carlo estimate actually lie within the shaded region. This  leads to large variances in the Monte Carlo probability estimates.
+\begin{figure}[H]
+\centerline{\includegraphics[width=0.5\textwidth]{Monte_Carlo_Limitations.png}}
+\caption{Computing Probability from $f_X(x)$}
+\label{Monte Carlo Limits}
+\end{figure}
+Importance Sampling attempts to overcome these limitations. It re-expresses equation \eqref{Pint} in the following form:
+\begin{equation}
+P\{X > 3.957\} = \int_{-\infty}^{\infty}I(x)f_X(x)\frac{g_X(x)}{g_X(x)}dx
+\label{is_int}
+\end{equation}
+where $I(x)$ is given by equation \eqref{Ix_def}.
+Equation \eqref{is_int} can be written as follows:
+\begin{equation}
+P\{X > 3.957\} = \int_{-\infty}^{\infty}I(x)\frac{f_X(x)}{g_X(x)}g_X(x)dx
+\end{equation}
+This equation can also be written as an expected value.
+\begin{equation}
+P\{X > 3.957\} = E\left[I(x)\frac{f_X(x)}{g_X(x)}\right]
+\end{equation}
+Once again, the expected value can be estimated using sample mean.
+\begin{equation}
+P\{X > 3.957\} \approx \frac{1}{N}\sum_{i=1}^{N}I(x_i)\frac{f_X(x_i)}{g_X(x_i)}
+\end{equation}
 %both techniques will be used to estimate the following probability:
 %\begin{equation}
 %P\{X > 3.957\}
