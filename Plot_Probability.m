@@ -10,11 +10,11 @@ hold on;
 fx = fx(x >= 3.957);
 x = x(x >= 3.957);
 area(x, fx);
-legend('f_X(x)','P\{X > 3.957\}')
+legend('f_X(x)','P\{I(x)=1\}')
 grid on;
-xlabel('X');
+xlabel('x');
 ylabel('f_X(x)')
-title('Computing P\{X > 3.957\} from f_X(x)');
+title('P\{I(x)=1\} : Monte Carlo Simulation');
 
 u = 3.957;
 sigma = 1;
@@ -28,9 +28,9 @@ hold on;
 fx = fx(x >= 3.957);
 x = x(x >= 3.957);
 area(x, fx);
-legend('g_X(x)','Important Samples')
+legend('g_X(x)','P\{I(x)=1\}')
 grid on;
-xlabel('X');
+xlabel('x');
 ylabel('g_X(x)')
-title('Important Samples from g_X(x)');
+title('P\{I(x)=1\} : Importance Sampling');
 

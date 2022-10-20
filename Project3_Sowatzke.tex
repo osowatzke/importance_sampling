@@ -76,13 +76,13 @@ The absolute value of the error between the Monte Carlo estimate and the true pr
 \caption{Monte Carlo Probability Error}
 \label{Monte Carlo Perr}
 \end{figure}
-As $N\rightarrow\infty$, the Monte Carlo Estimate should approach the true probability. This is confirmed by the reduction in variance as $N$ increases in Fig. \ref{Monte Carlo Perr}.
+As $N\rightarrow\infty$, the Monte Carlo Estimate should approach the true probability. This is confirmed by examining the results shown in Fig. \ref{Monte Carlo Perr}.
 \section{Importance Sampling}
-Examining the shaded area in Fig. 
-\ref{Monte Carlo Limits}, very few of the samples used in the Monte Carlo estimate actually lie within the shaded region. This  leads to large variances in the Monte Carlo probability estimates.
+Examining the shaded area shown in Fig. 
+\ref{Monte Carlo Limits}, very few of the samples from $f_X(x)$ contribute to the Monte Carlo probability estimate. This leads to large variances in the estimated probability.
 \begin{figure}[H]
-\centerline{\includegraphics[width=0.5\textwidth]{Monte_Carlo_Limitations.png}}
-\caption{Computing Probability from $f_X(x)$}
+\centerline{\includegraphics[width=0.5\textwidth]{MC_Indicator.png}}
+\caption{Important Samples from $f_X(x)$}
 \label{Monte Carlo Limits}
 \end{figure}
 Importance Sampling attempts to overcome these limitations. It re-expresses equation \eqref{Pint} in the following form:
@@ -91,41 +91,42 @@ P\{X > 3.957\} = \int_{-\infty}^{\infty}I(x)f_X(x)\frac{g_X(x)}{g_X(x)}dx
 \label{is_int}
 \end{equation}
 where $I(x)$ is given by equation \eqref{Ix_def}.
-Equation \eqref{is_int} can be written as follows:
+Equation \eqref{is_int} can be also be written as follows:
 \begin{equation}
-P\{X > 3.957\} = \int_{-\infty}^{\infty}I(x)\frac{f_X(x)}{g_X(x)}g_X(x)dx
+P\{X > 3.957\} = \int_{-\infty}^{\infty}\left[I(x)\frac{f_X(x)}{g_X(x)}\right]g_X(x)dx
 \end{equation}
-This equation can also be written as an expected value.
+This equation also represents an expected value.
 \begin{equation}
 P\{X > 3.957\} = E\left[I(x)\frac{f_X(x)}{g_X(x)}\right]
 \end{equation}
-Once again, the expected value can be estimated using sample mean.
+Once again, the expected value can be estimated using a sample mean.
 \begin{equation}
 P\{X > 3.957\} \approx \frac{1}{N}\sum_{i=1}^{N}I(x_i)\frac{f_X(x_i)}{g_X(x_i)}
+\label{is_prob_est}
 \end{equation}
-Note the samples $x_1,x_2,...,x_N$ are sampled from $g_X(x)$ instead of $f_X(x)$. This enables us to select a density $g_X(x)$ with more "important" samples. 
+Note the samples $x_1,x_2,...,x_N$ are now sampled from $g_X(x)$ instead of $f_X(x)$. As such, the density function $g_X(x)$ can be selected to provide more "important" samples. 
 \par
 Consider a density $g_X(x)$ that is a shifted version of $f_X(x)$. Specifically, consider the following density function
 \begin{equation}
 g_X(x) = \frac{1}{\sqrt{2\pi}}e^{-(x-3.957)^2/2}
 \end{equation}
-The important samples of this density function are highlighted in Fig. \ref{Important Samples}. 
+The "important" samples of the new density function $g_X(x)$ are highlighted in Fig. \ref{Important Samples}. 
 \begin{figure}[H]
-\centerline{\includegraphics[width=0.5\textwidth]{Important_Samples.png}}
+\centerline{\includegraphics[width=0.5\textwidth]{IS_Indicator.png}}
 \caption{Important Samples from $g_X(x)$}
 \label{Important Samples}
 \end{figure}
 \noindent
 Note that the number of important samples is significantly larger than that of Fig. \ref{Monte Carlo Limits}. This should reduce the variance of the probability estimate. 
 \par
-The Importance Sampling probability estimate was generated for values $N$ from $100$ to $10^5$ in increments of $100$. The MATLAB code to generate this estimate is included in Appendix \ref{matlab_code}. The Important Sampling probability estimate is plotted vs $N$ in Fig. \ref{Importance Sampling Estimate}.
+To confirm this result, an Importance Sampling probability estimate was generated for different values of $N$ using equation \eqref{is_prob_est}. The MATLAB code to generate this estimate is included in Appendix \ref{matlab_code}. The Important Sampling probability estimate is plotted vs $N$ in Fig. \ref{Importance Sampling Estimate}.
 \begin{figure}[H]
 \centerline{\includegraphics[width=0.5\textwidth]{Importance_Sampling_Estimate.png}}
 \caption{Importance Sampling Probability Estimate}
 \label{Importance Sampling Estimate}
 \end{figure}
 \noindent
-The absolute value of the error between the Importance Sampling estimate and the true probability ($|P_{est}\{X > 3.957\} - P_{truth}\{X > 3.957\}|$) is also plotted vs $N$.
+The absolute value of the error between the Importance Sampling probability estimate and the true probability ($|P_{est}\{X > 3.957\} - P_{truth}\{X > 3.957\}|$) is also plotted vs $N$.
 \begin{figure}[H]
 \centerline{\includegraphics[width=0.5\textwidth]{Importance_Sampling_Error.png}}
 \caption{Importance Sampling Probability Error}
@@ -138,9 +139,9 @@ The variance of the Monte Carlo and Importance Sampling probability estimates ca
 \label{Error Overlay}
 \end{figure}
 \noindent
-Note that the Importance Sampling probability estimate is much closer to the expected probability than the Monte Carlo Estimate. As such, the Importance Sampling estimate has a much lower variance for the same values of $N$.
+Note that the Importance Sampling probability estimate is much closer to the expected probability than the Monte Carlo Estimate. As such, the Importance Sampling estimate has a lower variance than the Monte Carlo Estimate for the same values of $N$.
 \section{Conclusion}
-Monte Carlo Simulation and Importance Sampling are ways to estimate probabilities. Both of these approaches were used to estimate $P\{X > 3.957\}$ for $X \sim N(1,1)$. As demonstrated, importance sampling produced a probability estimate with a smaller variance than that of Monte Carlo simulation. This result can be applied to other probabilities estimates as well. If a distribution is hard to sample, importance sampling can be used to reduce the number of samples required to produce an estimate. This can make a significant difference, especially when it is computationally intensive to determine if the random variable exceeds the threshold.
+Monte Carlo Simulation and Importance Sampling are ways to estimate probabilities. Both of these approaches were used to estimate $P\{X > 3.957\}$ for $X \sim N(1,1)$. As demonstrated, importance sampling produced a probability estimate with a smaller variance than that of Monte Carlo simulation. This result can be applied to other probabilities estimates as well. If a distribution is hard to sample, importance sampling can be used to reduce the number of samples required to produce an estimate. This can make a significant difference, especially when it is computationally intensive to determine the indicator function $I(x)$.
 \onecolumn
 \pagebreak
 \appendices
